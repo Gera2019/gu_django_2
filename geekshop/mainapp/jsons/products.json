@@ -1,0 +1,29 @@
+[
+  {
+      "name": "Диван \"Экстрэм\"", 
+      "image": "products_images/acroipolis_b.jpeg", 
+      "category": "Модерн",
+      "short_desc": "Диван-книжка", 
+      "description": "", 
+      "price": "10000.00", 
+      "quantity": 5
+  },
+  {
+      "name": "диван \"Мечта\"", 
+      "image": "products_images/диван-мечта-2-курск-в1-500x500.png", 
+      "category": "Классика",
+      "short_desc": "диван-аккордион", 
+      "description": "Супер диван", 
+      "price": "23000.00", 
+      "quantity": 15
+  },
+  {
+      "name": "Стол Глория", 
+      "image": "", 
+      "category": "Классика",
+      "short_desc": "Стол овальный", 
+      "description": "Красивый раскладывающийся стол", 
+      "price": "12000.00", 
+      "quantity": 56
+  }
+]

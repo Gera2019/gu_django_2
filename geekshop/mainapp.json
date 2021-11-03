@@ -1,0 +1,114 @@
+[
+{
+  "model": "mainapp.productscategory",
+  "pk": 1,
+  "fields": {
+    "name": "Мягкая мебель",
+    "description": "",
+    "created": "2021-10-10T20:14:48.692Z",
+    "updated": "2021-10-11T19:17:30.942Z"
+  }
+},
+{
+  "model": "mainapp.productscategory",
+  "pk": 2,
+  "fields": {
+    "name": "Стулья",
+    "description": "",
+    "created": "2021-10-11T19:10:36.740Z",
+    "updated": "2021-10-11T19:10:36.740Z"
+  }
+},
+{
+  "model": "mainapp.productscategory",
+  "pk": 3,
+  "fields": {
+    "name": "Дом",
+    "description": "",
+    "created": "2021-10-11T19:29:34.147Z",
+    "updated": "2021-10-11T19:29:34.147Z"
+  }
+},
+{
+  "model": "mainapp.productscategory",
+  "pk": 4,
+  "fields": {
+    "name": "Офис",
+    "description": "",
+    "created": "2021-10-11T19:29:39.640Z",
+    "updated": "2021-10-11T19:29:39.640Z"
+  }
+},
+{
+  "model": "mainapp.productscategory",
+  "pk": 5,
+  "fields": {
+    "name": "Модерн",
+    "description": "",
+    "created": "2021-10-11T19:29:46.270Z",
+    "updated": "2021-10-11T19:29:46.270Z"
+  }
+},
+{
+  "model": "mainapp.productscategory",
+  "pk": 6,
+  "fields": {
+    "name": "Классика",
+    "description": "",
+    "created": "2021-10-11T19:30:03.915Z",
+    "updated": "2021-10-11T19:30:03.915Z"
+  }
+},
+{
+  "model": "mainapp.product",
+  "pk": 1,
+  "fields": {
+    "name": "Диван \"Экстрэм\"",
+    "image": "products_images/acroipolis_b.jpeg",
+    "category": 5,
+    "short_desc": "Диван-книжка",
+    "description": "",
+    "price": "10000.00",
+    "quantity": 5
+  }
+},
+{
+  "model": "mainapp.product",
+  "pk": 2,
+  "fields": {
+    "name": "диван \"Мечта\"",
+    "image": "products_images/диван-мечта-2-курск-в1-500x500.png",
+    "category": 6,
+    "short_desc": "диван-аккордион",
+    "description": "Супер диван",
+    "price": "23000.00",
+    "quantity": 15
+  }
+},
+{
+  "model": "mainapp.product",
+  "pk": 3,
+  "fields": {
+    "name": "Стул венский",
+    "image": "products_images/5710290-1000x1000.jpeg",
+    "category": 6,
+    "short_desc": "",
+    "description": "Классический венский стул",
+    "price": "3000.00",
+    "quantity": 100
+  }
+},
+{
+  "model": "mainapp.product",
+  "pk": 3,
+  "fields": {
+    "name": "Стол Глория",
+    "image": "",
+    "category": 6,
+    "short_desc": "Стол овальный",
+    "description": "Красивый раскладывающийся стол",
+    "price": "12000.00",
+    "quantity": 56
+  }
+}
+]

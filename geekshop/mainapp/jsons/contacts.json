@@ -1,0 +1,20 @@
+[
+  {
+      "city": "Москва",
+      "address": "ул. Первомайская, д.40, оф. 516",
+      "telephone": "8-800-888-55-53",
+      "email": "support@mebelvam.ru"
+  },
+  {
+      "city": "Казань",
+      "address": "ул. Вилоновская, д. 200к1, оф. 3001",
+      "telephone": "8-800-888-55-53",
+      "email": "support@mebelvam.ru"
+  },
+  {
+      "city": "Челябинск",
+      "address": "ул. Советская, д.34стр4",
+      "telephone": "8-800-888-40-40",
+      "email": "support@mebelvam.ru"
+  }
+]
