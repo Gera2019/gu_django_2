@@ -1,1 +1,1 @@
-# gu_django_2
+# Django Framework. Инструменты оптимизации
