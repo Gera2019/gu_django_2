@@ -23,7 +23,7 @@ def get_same_products(hot_product):
 def products(request, pk=None, page=1):
     title = 'Каталог'
     links_menu = ProductsCategory.objects.all()
-    basket = get_basket(request.user)
+    # basket = get_basket(request.user)
     hot_product = get_hot_product()
     same_products = get_same_products(hot_product)
     products = Product.objects.filter(is_active=True, category__is_active=True).order_by('price')
@@ -50,7 +50,7 @@ def products(request, pk=None, page=1):
             'links_menu': links_menu,
             'category': category,
             'products': products_paginator,
-            'basket': basket,
+            # 'basket': basket,
         }
         return render(request, 'mainapp/products.html', context )
 
@@ -60,7 +60,7 @@ def products(request, pk=None, page=1):
         'products': products,
         'hot_product': hot_product,
         'same_products': same_products,
-        'basket': basket,
+        # 'basket': basket,
     }
     return render(request, 'mainapp/products.html', context)
 
@@ -69,13 +69,13 @@ def product(request, pk):
     links_menu = ProductsCategory.objects.all()
     product = get_object_or_404(Product, pk=pk)
     same_products =  get_same_products(product)
-    basket = get_basket(request.user)
+    # basket = get_basket(request.user)
 
     context = {
         'title': title,
         'links_menu': links_menu,
         'product': product,
         'same_products': same_products,
-        'basket': basket,
+        # 'basket': basket,
     }
     return render(request, 'mainapp/product.html', context)

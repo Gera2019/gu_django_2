@@ -1,6 +1,150 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d8de10f6-0580-481a-87ce-c7a620005436" name="Changes" comment=".gitignore update">
+      <change afterPath="$PROJECT_DIR$/geekshop/authapp/templates/authapp/verification.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/geekshop/mainapp/context_processors.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/geekshop/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/geekshop/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/geekshop/adminapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/geekshop/adminapp/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/geekshop/authapp/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/geekshop/authapp/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/geekshop/authapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/geekshop/authapp/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/geekshop/authapp/templates/authapp/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/geekshop/authapp/templates/authapp/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/geekshop/authapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/geekshop/authapp/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/geekshop/authapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/geekshop/authapp/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/geekshop/basketapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/geekshop/basketapp/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/geekshop/contactsapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/geekshop/contactsapp/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/geekshop/geekshop/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/geekshop/geekshop/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/geekshop/geekshop/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/geekshop/geekshop/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/geekshop/mainapp/templates/mainapp/product.html" beforeDir="false" afterPath="$PROJECT_DIR$/geekshop/mainapp/templates/mainapp/product.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/geekshop/mainapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/geekshop/mainapp/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/geekshop/mainapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/geekshop/mainapp/views.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="ProjectId" id="20QMyirKBd4CGfIVJTH9xT4CMLm" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/venv" />
     <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/venv" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="django" type="PythonConfigurationType" factoryName="Python">
+      <module name="gu_django_2" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/local/bin/python3.9" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/geekshop" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/geekshop/manage.py" />
+      <option name="PARAMETERS" value="runserver" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d8de10f6-0580-481a-87ce-c7a620005436" name="Changes" comment="" />
+      <created>1635972614572</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1635972614572</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Initial project">
+      <created>1635972752654</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1635972752654</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Initial project">
+      <created>1635973010161</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1635973010161</updated>
+    </task>
+    <task id="LOCAL-00003" summary=".gitignore update">
+      <created>1635973305958</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1635973305958</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="lesson1" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial project" />
+    <MESSAGE value=".gitignore update" />
+    <option name="LAST_COMMIT_MESSAGE" value=".gitignore update" />
   </component>
 </project>
