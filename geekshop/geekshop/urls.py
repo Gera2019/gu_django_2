@@ -27,6 +27,7 @@ urlpatterns = [
     re_path(r'^auth/', include('authapp.urls', namespace='auth')),
     re_path(r'^basket/', include('basketapp.urls', namespace='basket')),
     re_path(r'^admin_staff/', include('adminapp.urls', namespace='admin_staff')),
+    path('', include('social_django.urls', namespace='social')),
 ]
 
 if settings.DEBUG:
