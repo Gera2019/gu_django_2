@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os, json
 from pathlib import Path
+import environ
+
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,11 +24,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-6jvz_o=o3fpk5e0mt2_fiovw=-67#!(z1dejn-x(#p^4^#%rxf'
+# SECRET_KEY = 'django-insecure-6jvz_o=o3fpk5e0mt2_fiovw=-67#!(z1dejn-x(#p^4^#%rxf'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+# ALLOWED_HOSTS = []
 ALLOWED_HOSTS = ['127.0.0.1']
 
 
@@ -58,8 +64,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'social_django.middleware.SocialAuthExceptionMiddleware',
-    'social_django.context_processors.backends',
-    'social_django.context_processors.login_redirect'
 ]
 
 ROOT_URLCONF = 'geekshop.urls'
@@ -78,7 +82,6 @@ TEMPLATES = [
                 'mainapp.context_processors.basket',
                 'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',
-
             ],
         },
     },
@@ -143,7 +146,7 @@ STATICFILES_DIRS =  (
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
-LOGIN_ERROR_URL = '/'
+# LOGIN_ERROR_URL = '/'
 # Mail server settings
 DOMAIN_NAME = 'http://localhost:8000'
 
@@ -154,7 +157,7 @@ EMAIL_HOST_PASSWORD = '123'
 EMAIL_USE_SSL = False
 
 AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
+    # 'django.contrib.auth.backends.ModelBackend',
     'social_core.backends.vk.VKOAuth2',
 )
 
@@ -166,15 +169,15 @@ with open('geekshop/vk.json', 'r') as f:
 SOCIAL_AUTH_VK_OAUTH2_KEY = VK['SOCIAL_AUTH_VK_OAUTH2_KEY']
 SOCIAL_AUTH_VK_OAUTH2_SECRET = VK['SOCIAL_AUTH_VK_OAUTH2_SECRET']
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
-SOCIAL_AUTH_VK_OAUTH2_IGNORE_DEFAULT_SCOPE = False
+SOCIAL_AUTH_VK_OAUTH2_IGNORE_DEFAULT_SCOPE = True
 SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email']
+
 SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.social_details',
     'social_core.pipeline.social_auth.social_uid',
     'social_core.pipeline.social_auth.auth_allowed',
     'social_core.pipeline.social_auth.social_user',
     'social_core.pipeline.user.create_user',
-
     'social_core.pipeline.social_auth.associate_user',
     'social_core.pipeline.social_auth.load_extra_data',
     'social_core.pipeline.user.user_details',
