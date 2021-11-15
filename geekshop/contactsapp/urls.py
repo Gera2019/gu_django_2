@@ -1,8 +1,8 @@
-from django.urls import path
+from django.urls import path, re_path
 from .views import contacts
 
 app_name = 'contactsapp'
 
 urlpatterns = [
-    path('', contacts, name = 'main'),
+    re_path(r'^$', contacts, name = 'main'),
 ]

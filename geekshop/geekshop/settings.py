@@ -69,6 +69,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'mainapp.context_processors.basket',
             ],
         },
     },
@@ -133,9 +134,12 @@ STATICFILES_DIRS =  (
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# Mail server settings
+DOMAIN_NAME = 'http://localhost:8000'
 
-LOGIN_URL = '/auth/login/'
+EMAIL_HOST = 'cgp.local'
+EMAIL_PORT = '25'
+EMAIL_HOST_USER = 'test1@cgp.local'
+EMAIL_HOST_PASSWORD = '123'
+EMAIL_USE_SSL = False
