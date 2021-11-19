@@ -1,5 +1,6 @@
-from django.db import models
 from django.conf import settings
+from django.db import models
+
 from mainapp.models import Product
 
 
@@ -16,7 +17,7 @@ class Order(models.Model):
         (SENT_TO_PROCEED, 'отправлен в обработку'),
         (PAID, 'оплачен'),
         (PROCEEDED, 'обрабатывается'),
-        (READY, 'готово к выдаче'),
+        (READY, 'готво к выдаче'),
         (CANCEL, 'отменен'),
     )
     # или пользователя берем через get_user_model()
@@ -37,7 +38,7 @@ class Order(models.Model):
         verbose_name_plural = 'заказы'
 
     def __str__(self):
-        return f'Заказ: {self.pk}'
+        return f'Заказ: {self.id}'
 
     def get_total_quantity(self):
         items = self.orderitems.select_related()
@@ -60,7 +61,18 @@ class Order(models.Model):
         self.save()
 
 
+class OrderItemQuerySet(models.QuerySet):
+
+    def delete(self):
+        for object in self:
+            object.product.quantity += object.quantity
+            object.product.save()
+        super(OrderItemQuerySet, self).delete()
+
+
 class OrderItem(models.Model):
+    objects = OrderItemQuerySet.as_manager()
+
     order = models.ForeignKey(
         Order,
         related_name='orderitems',

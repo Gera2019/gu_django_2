@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.db.models.signals import pre_save, pre_delete
 from django.shortcuts import get_object_or_404, HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
@@ -39,6 +38,7 @@ class OrderCreate(CreateView):
                     form.initial['product'] = basket_items[num].product
                     form.initial['quantity'] = basket_items[num].quantity
                     form.initial['price'] = basket_items[num].product.price
+                    # basket_items[num].delete()
                 basket_items.delete()
             else:
                 formset = OrderFormSet()
@@ -64,11 +64,13 @@ class OrderCreate(CreateView):
 
 
 class OrderUpdate(UpdateView):
+
     model = Order
     fields = []
     success_url = reverse_lazy('orders:orders_list')
 
     def get_context_data(self, **kwargs):
+
         context = super(OrderUpdate, self).get_context_data(**kwargs)
         OrderFormSet = inlineformset_factory(Order, OrderItem, form=OrderItemForm, extra=1)
 
@@ -84,20 +86,21 @@ class OrderUpdate(UpdateView):
         return context
 
     def form_valid(self, form):
-        context = self.get_context_data()
-        orderitems = context['orderitems']
+        if self.request.is_ajax():
+            context = self.get_context_data()
+            orderitems = context['orderitems']
 
-        with transaction.atomic():
-            form.instance.user = self.request.user
-            self.object = form.save()
-            if orderitems.is_valid():
-                orderitems.instance = self.object
-                orderitems.save()
+            with transaction.atomic():
+                form.instance.user = self.request.user
+                self.object = form.save()
+                if orderitems.is_valid():
+                    orderitems.instance = self.object
+                    orderitems.save()
 
-        if self.object.get_total_cost() == 0:
-            self.object.delete()
+            if self.object.get_total_cost() == 0:
+                self.object.delete()
 
-        return super(OrderUpdate, self).form_valid(form)
+            return super(OrderUpdate, self).form_valid(form)
 
 
 class OrderDelete(DeleteView):
