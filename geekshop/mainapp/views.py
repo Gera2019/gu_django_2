@@ -34,7 +34,11 @@ def products(request, pk=None, page=1):
             products = Product.objects.filter(is_active=True, category__is_active=True).order_by('price')
         else:
             category = get_object_or_404(ProductsCategory, pk=pk)
-            products = Product.objects.filter(category__pk=pk, is_active=True, category__is_active=True).order_by('price')
+            products = Product.objects.filter(
+                category__pk=pk,
+                is_active=True,
+                category__is_active=True
+            ).order_by('price')
 
         paginator = Paginator(products, 1)
 
