@@ -23,31 +23,34 @@
                 </li>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                     <li><a class="dropdown-item" href="{% url 'auth:edit' %}">Профиль</a></li>
+                    <li><a class="dropdown-item" href="{% url 'orders:orders_list' %}">Заказы</a></li>
+
                     {% if user.is_superuser %}
                         <li><a class="dropdown-item" href="{% url 'admin_staff:users' %}">Админка</a></li>
                     {% endif %}
+
                     {% if basket %}
                         <li><a class="dropdown-item" href="{% url 'basket:view' %}">Корзина</a></li>
                     {% endif %}
+
                     {% if user.is_authenticated %}
                         <li><a class="dropdown-item" href="{% url 'auth:logout' %}">Выйти</a></li>
                     {% endif %}
                 </ul>
+
                 {% if basket %}
                     <li>
                         <span>
-
-                        {{ basket.0.total_cost|floatformat:0 }} руб.
-                        ({{ basket.0.total_quantity  }} шт.)
-                    </span>
+                            {{ basket.0.total_cost|floatformat:0 }} руб.
+                            ({{ basket.0.total_quantity  }} шт.)
+                        </span>
                     </li>
-
                 {% endif %}
+
             {% endif %}
+
             {% if not user.is_authenticated %}
-                <li>
-                    <a href="{% url 'auth:login' %}">Войти</a>
-                </li>
+                <li><a href="{% url 'auth:login' %}">Войти</a></li>
             {% endif %}
         </ul>
         <a href="#" class="search"></a>

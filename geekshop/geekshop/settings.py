@@ -13,25 +13,27 @@ import os, json
 from pathlib import Path
 import environ
 
-env = environ.Env()
-environ.Env.read_env()
+# env = environ.Env()
+# environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-6jvz_o=o3fpk5e0mt2_fiovw=-67#!(z1dejn-x(#p^4^#%rxf'
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = 'django-insecure-6jvz_o=o3fpk5e0mt2_fiovw=-67#!(z1dejn-x(#p^4^#%rxf'
+# SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -49,6 +51,7 @@ INSTALLED_APPS = [
     'contactsapp',
     'basketapp',
     'adminapp',
+    'ordersapp',
 
     'social_django',
 ]
@@ -143,10 +146,18 @@ STATICFILES_DIRS =  (
     os.path.join(BASE_DIR, 'geekshop', 'static'),
 )
 
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+
+]
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
-# LOGIN_ERROR_URL = '/'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_URL = '/auth/login/'
+
 # Mail server settings
 DOMAIN_NAME = 'http://localhost:8000'
 
@@ -157,7 +168,7 @@ EMAIL_HOST_PASSWORD = '123'
 EMAIL_USE_SSL = False
 
 AUTHENTICATION_BACKENDS = (
-    # 'django.contrib.auth.backends.ModelBackend',
+    'django.contrib.auth.backends.ModelBackend',
     'social_core.backends.vk.VKOAuth2',
 )
 
