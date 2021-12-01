@@ -5,7 +5,7 @@ from django.template.loader import render_to_string
 from django.urls import reverse
 from basketapp.models import Basket
 from mainapp.models import Product
-
+from django.db.models import F, Q
 
 @login_required
 def basket(request):
@@ -23,11 +23,13 @@ def basket_add(request, pk):
     product = get_object_or_404(Product, pk=pk)
     basket = Basket.objects.filter(user=request.user, product=product).first()
 
-    if not basket:
-        basket = Basket(user=request.user, product=product)
+    old_basket_items = Basket.objects.filter(user=request.user, product=product).first()
 
-    basket.quantity += 1
-    basket.save()
+    if old_basket_items:
+        old_basket_items[0].quantity += 1
+        old_basket_items[0].save()
+    else:
+        old_basket_items[0].quantity = F('quantity') + 1
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
@@ -52,10 +54,10 @@ def basket_edit(request, pk, quantity):
         else:
             new_basket.delete()
 
-        basket = Basket.objects.filter(user=request.user).order_by('product__category')
+        basket_items = Basket.objects.filter(user=request.user).order_by('product__category')
 
         context = {
-            'basket': basket,
+            'basket': basket_items,
         }
 
         result = render_to_string('basketapp/includes/inc_basket_list.html', context)

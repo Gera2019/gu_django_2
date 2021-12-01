@@ -1,6 +1,6 @@
 from django.db import models
 
-# Create your models here.
+
 class ProductsCategory(models.Model):
     name = models.CharField(
         max_length=64,
@@ -26,25 +26,26 @@ class ProductsCategory(models.Model):
     def __str__(self):
         return self.name
 
+
 class Product(models.Model):
+    category = models.ForeignKey(
+        ProductsCategory,
+        on_delete=models.CASCADE
+    )
+
     name = models.CharField(
-        max_length=128,
         verbose_name='имя продукта',
+        max_length=128,
     )
 
     image = models.ImageField(
         upload_to='products_images',
-        blank=True,
-    )
-
-    category = models.ForeignKey(
-        ProductsCategory,
-        on_delete=models.CASCADE,
+        blank=True
     )
 
     short_desc = models.CharField(
-        max_length=60,
         verbose_name='краткое описание',
+        max_length=60,
         blank=True,
     )
 
@@ -61,7 +62,7 @@ class Product(models.Model):
 
     quantity = models.PositiveIntegerField(
         verbose_name='количество на складе',
-        default=0,
+        default=0
     )
 
     created = models.DateTimeField(
@@ -79,14 +80,9 @@ class Product(models.Model):
         return Product.objects.filter(is_active=True).order_by('category', 'name')
 
     def __str__(self):
-        return f'{self.name} ({self.category.name})'
+        return f"{self.name} ({self.category.name})"
 
     class Meta:
         ordering = ['-updated']
         verbose_name = 'товар'
         verbose_name_plural = 'товары'
-
-
-
-
-
