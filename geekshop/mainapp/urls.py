@@ -9,5 +9,5 @@ urlpatterns = [
     path('product/<int:pk>/', product, name = 'detail'),
     path('category/<int:pk>/page/<int:page>/', products, name='page'),
     path('category/<int:pk>/', products, name='category'),
-    re_path(r'^category/(?P<pk>\d+)/$', cache_page(3600)(mainapp.products)),
+    path('category/<int:pk>/page/<int:page>/', products, name='page'),
 ]

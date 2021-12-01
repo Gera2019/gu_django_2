@@ -6,7 +6,7 @@ from adminapp.forms import ShopUserAdminEditForm, ProductEditForm
 from authapp.forms import ShopUserRegisterForm
 from authapp.models import ShopUser
 from django.shortcuts import get_object_or_404, render, reverse
-from adminapp.forms import CategoryCreationForm, CategoryEditForm
+from adminapp.forms import ProductCategoryEditForm
 from mainapp.models import Product, ProductsCategory
 from django.contrib.auth.decorators import user_passes_test
 from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView
@@ -144,7 +144,7 @@ class CategoryListView(LoginRequiredMixin, ListView):
 
 class CategoryCreateView(CreateView):
     model = ProductsCategory
-    form_class = CategoryEditForm
+    form_class = ProductCategoryEditForm
     template_name = 'adminapp/category_update.html'
     success_url = reverse_lazy('admin_staff:categories')
 
@@ -173,7 +173,7 @@ class CategoryCreateView(CreateView):
 
 class CategoryUpdateView(UpdateView):
     model = ProductsCategory
-    form_class = CategoryEditForm
+    form_class = ProductCategoryEditForm
     template_name = 'adminapp/category_update.html'
     success_url = reverse_lazy('admin_staff:categories')
 

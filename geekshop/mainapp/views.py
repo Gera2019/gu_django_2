@@ -9,6 +9,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.views.decorators.cache import cache_page, never_cache
 
+
 def get_links_menu():
     if settings.LOW_CACHE:
         key = 'links_menu'
@@ -99,11 +100,8 @@ def get_same_products(hot_product):
     same_products = Product.objects.filter(category=hot_product.category).exclude(pk=hot_product.pk)[:3]
     return same_products
 
-def main(request):
-   title = 'главная'
-   products = get_products()[:3]
 
-@cache_page(3600)
+
 def products(request, pk=None, page=1):
     title = 'Каталог'
 
@@ -160,15 +158,3 @@ def product(request, pk):
         'same_products': get_same_products(product),
     }
     return render(request, 'mainapp/product.html', context)
-
-def main(request):
-   title = 'главная'
-
-   products = Product.objects.filter(is_active=True, category__is_active=True).select_related('category')[:3]
-
-   content = {
-       'title': title,
-       'products': products,
-   }
-
-   return render(request, 'mainapp/index.html', content)
