@@ -31,7 +31,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # ALLOWED_HOSTS = []
 ALLOWED_HOSTS = ['*']
@@ -58,7 +58,8 @@ INSTALLED_APPS = [
 
     'debug_toolbar',
     'template_profiler_panel',
-    'django_extensions',
+
+    'django_extensions'
 ]
 
 AUTH_USER_MODEL = 'authapp.ShopUser'
@@ -72,6 +73,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'social_django.middleware.SocialAuthExceptionMiddleware',
+
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
@@ -211,8 +213,8 @@ SOCIAL_AUTH_PIPELINE = (
 if DEBUG:
     import socket  # only if you haven't already imported this
 
-    hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
-    INTERNAL_IPS = [ip[:-1] + '1' for ip in ips] + ['127.0.0.1', ]
+    # hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+    # INTERNAL_IPS = [ip[:-1] + '1' for ip in ips] + ['127.0.0.1', ]
 
 
     def show_toolbar(request):
@@ -240,16 +242,16 @@ if DEBUG:
         'template_profiler_panel.panels.template.TemplateProfilerPanel',
     ]
 
-if os.name == 'posix':
-    CACHE_MIDDLEWARE_ALIAS = 'default'
-    CACHE_MIDDLEWARE_SECONDS = 10
-    CACHE_MIDDLEWARE_KEY_PREFIX = 'geekshop'
-
-    CACHES = {
-        'default': {
-            'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-            'LOCATION': '127.0.0.1:11211',
-        }
-    }
-
-LOW_CACHE = True
+# if os.name == 'posix':
+#     CACHE_MIDDLEWARE_ALIAS = 'default'
+#     CACHE_MIDDLEWARE_SECONDS = 10
+#     CACHE_MIDDLEWARE_KEY_PREFIX = 'geekshop'
+#
+#     CACHES = {
+#         'default': {
+#             'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+#             'LOCATION': '127.0.0.1:11211',
+#         }
+#     }
+#
+# LOW_CACHE = True
