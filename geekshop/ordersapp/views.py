@@ -1,11 +1,16 @@
 from django.db.models.signals import pre_save, pre_delete
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from django.db import transaction
+
 from django.forms import inlineformset_factory
+
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
+
 from basketapp.models import Basket
+from mainapp.models import Product
 from ordersapp.models import Order, OrderItem
 from ordersapp.forms import OrderItemForm
 from django.dispatch import receiver
@@ -64,13 +69,11 @@ class OrderCreate(CreateView):
 
 
 class OrderUpdate(UpdateView):
-
     model = Order
     fields = []
     success_url = reverse_lazy('orders:orders_list')
 
     def get_context_data(self, **kwargs):
-
         context = super(OrderUpdate, self).get_context_data(**kwargs)
         OrderFormSet = inlineformset_factory(Order, OrderItem, form=OrderItemForm, extra=1)
 
@@ -86,21 +89,20 @@ class OrderUpdate(UpdateView):
         return context
 
     def form_valid(self, form):
-        if self.request.is_ajax():
-            context = self.get_context_data()
-            orderitems = context['orderitems']
+        context = self.get_context_data()
+        orderitems = context['orderitems']
 
-            with transaction.atomic():
-                form.instance.user = self.request.user
-                self.object = form.save()
-                if orderitems.is_valid():
-                    orderitems.instance = self.object
-                    orderitems.save()
+        with transaction.atomic():
+            form.instance.user = self.request.user
+            self.object = form.save()
+            if orderitems.is_valid():
+                orderitems.instance = self.object
+                orderitems.save()
 
-            if self.object.get_total_cost() == 0:
-                self.object.delete()
+        if self.object.get_total_cost() == 0:
+            self.object.delete()
 
-            return super(OrderUpdate, self).form_valid(form)
+        return super(OrderUpdate, self).form_valid(form)
 
 
 class OrderDelete(DeleteView):
@@ -137,3 +139,12 @@ def product_quantity_update_save(sender, update_fields, instance, **kwargs):
 def product_quantity_update_delete(sender, instance, **kwargs):
     instance.product.quantity += instance.quantity
     instance.product.save()
+
+
+def get_product_price(request, pk):
+    if request.is_ajax():
+        product = Product.objects.filter(pk=int(pk)).first()
+        if product:
+            return JsonResponse({'price': product.price})
+        else:
+            return JsonResponse({'price': 0})
