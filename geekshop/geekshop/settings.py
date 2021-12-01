@@ -13,25 +13,28 @@ import os, json
 from pathlib import Path
 import environ
 
-env = environ.Env()
-environ.Env.read_env()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-6jvz_o=o3fpk5e0mt2_fiovw=-67#!(z1dejn-x(#p^4^#%rxf'
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -49,8 +52,14 @@ INSTALLED_APPS = [
     'contactsapp',
     'basketapp',
     'adminapp',
+    'ordersapp',
 
     'social_django',
+
+    'debug_toolbar',
+    'template_profiler_panel',
+
+    'django_extensions'
 ]
 
 AUTH_USER_MODEL = 'authapp.ShopUser'
@@ -64,6 +73,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'social_django.middleware.SocialAuthExceptionMiddleware',
+
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'geekshop.urls'
@@ -98,6 +109,12 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+    # 'default': {
+    #     'NAME': 'geekshop',
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'USER': 'postgres',
+    #     'HOST': 'localhost',
+    # }
 }
 
 
@@ -128,9 +145,7 @@ LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 
@@ -141,12 +156,23 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS =  (
     os.path.join(BASE_DIR, 'geekshop', 'static'),
+    os.path.join(BASE_DIR, "ordersapp", "static"),
 )
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
+
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
-# LOGIN_ERROR_URL = '/'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_URL = '/auth/login/'
+
 # Mail server settings
 DOMAIN_NAME = 'http://localhost:8000'
 
@@ -157,13 +183,13 @@ EMAIL_HOST_PASSWORD = '123'
 EMAIL_USE_SSL = False
 
 AUTHENTICATION_BACKENDS = (
-    # 'django.contrib.auth.backends.ModelBackend',
+    'django.contrib.auth.backends.ModelBackend',
     'social_core.backends.vk.VKOAuth2',
 )
 
-
 # Загружаем секреты из файла
-with open('geekshop/vk.json', 'r') as f:
+VK_PATH = os.path.join(BASE_DIR, 'vk.json')
+with open(VK_PATH, 'r') as f:
     VK = json.load(f)
 
 SOCIAL_AUTH_VK_OAUTH2_KEY = VK['SOCIAL_AUTH_VK_OAUTH2_KEY']
@@ -183,3 +209,49 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.user.user_details',
     'authapp.pipeline.save_user_profile',
 )
+
+if DEBUG:
+    import socket  # only if you haven't already imported this
+
+    # hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+    # INTERNAL_IPS = [ip[:-1] + '1' for ip in ips] + ['127.0.0.1', ]
+
+
+    def show_toolbar(request):
+        return True
+
+
+    DEBUG_TOOLBAR_CONFIG = {
+        'SHOW_TOOLBAR_CALLBACK': show_toolbar,
+    }
+
+    DEBUG_TOOLBAR_PANELS = [
+        'debug_toolbar.panels.versions.VersionsPanel',
+        'debug_toolbar.panels.timer.TimerPanel',
+        'debug_toolbar.panels.settings.SettingsPanel',
+        'debug_toolbar.panels.headers.HeadersPanel',
+        'debug_toolbar.panels.request.RequestPanel',
+        'debug_toolbar.panels.sql.SQLPanel',
+        'debug_toolbar.panels.templates.TemplatesPanel',
+        'debug_toolbar.panels.staticfiles.StaticFilesPanel',
+        'debug_toolbar.panels.cache.CachePanel',
+        'debug_toolbar.panels.signals.SignalsPanel',
+        'debug_toolbar.panels.logging.LoggingPanel',
+        'debug_toolbar.panels.redirects.RedirectsPanel',
+        'debug_toolbar.panels.profiling.ProfilingPanel',
+        'template_profiler_panel.panels.template.TemplateProfilerPanel',
+    ]
+
+# if os.name == 'posix':
+#     CACHE_MIDDLEWARE_ALIAS = 'default'
+#     CACHE_MIDDLEWARE_SECONDS = 10
+#     CACHE_MIDDLEWARE_KEY_PREFIX = 'geekshop'
+#
+#     CACHES = {
+#         'default': {
+#             'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+#             'LOCATION': '127.0.0.1:11211',
+#         }
+#     }
+#
+# LOW_CACHE = True
